@@ -1,4 +1,19 @@
+"""
+이 모듈은 프로그램 텍스트 UI와 관련된 모듈이다
+기능
+1 : 지금까지의 모든 조건을 만족하는 주차장 리스트를 출력
+2 : 아직 미구현
+3 : 아직 미구현
+4 : 프로그램 종료
+"""
+import file_manager as fm
+import parking_spot_manager as psm
+
 def start_process(path):
+
+    lines = fm.read_file(path)
+    spots = psm.str_list_to_class_list(lines)
+
     while True:
         print("---menu---")
         print("[1] print")
@@ -7,8 +22,10 @@ def start_process(path):
         print("[4] exit")
         select = int(input('type:'))
         if select == 1:
-            print("not implemented yet")
-            # fill this block
+            """
+            모든 조건을 만족하는 주차 리스트 출력
+            """
+            psm.print_spots(spots)
         elif select == 2:
             print("---filter by---")
             print("[1] name")
@@ -52,7 +69,7 @@ def start_process(path):
                 # fill this block
             else: print("invalid input")
         elif select == 4:
-            print("not implemented yet")
-            # fill this block
+            print("Exit")
+            break
         else:
             print("invalid input")
