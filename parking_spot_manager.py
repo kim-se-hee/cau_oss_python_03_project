@@ -1,8 +1,8 @@
 """
 이 모듈은 주차장에 관한 정보를 다루는 모듈이다
 내부 클래스로는 주차장 객체를 가리키는 parking_spot이 있다
-함수로는 주차장 정보 문자열 리스트를 객체 리스트로 바꾸는 str_list_to_class_list
-주차장 리스트를 출력하는 print_spots가 있다
+조건에 맞는 주차장을 걸러내는 필터도 5개가 있다
+필터들은 함수로 구현하였으며 이름, 도시, 구, 주차 유형, 위치등의 조건을 적용할 수 있다
 """
 class parking_spot:
     """
@@ -63,6 +63,49 @@ def print_spots(spots):
     print(f"---print elements({len(spots)})")
     for s in spots:
         print(s)
+
+def filter_by_name(spots, name):
+    """
+    이름으로 필터링
+    이름에 매개변수로 받은 name이 포함되어 있는 주차장 객체만 남긴다
+    """
+    filtered_spot = [spot for spot in spots if name in spot.get()]
+    return filtered_spot
+
+def filter_by_city(spots, city):
+    """
+    도시로 필터링
+    도시에 매개변수로 받은 cityrk 포함되어 있는 주차장 객체만 남긴다
+    """
+    filtered_spot = [spot for spot in spots if city in spot.get('city')]
+    return filtered_spot
+
+def filter_by_district(spots, district):
+    """
+    시군구로 필터링
+    시군구에 매개변수로 받은 district가 포함되어 있는 주차장 객체만 남긴다
+    """
+    filtered_spot = [spot for spot in spots if district in spot.get('district')]
+    return filtered_spot
+
+def filter_by_ptype(spots, ptype):
+    """
+    주차 유형으로 필터링
+    주차 유형에 매개변수로 받은 ptype이 포함되어 있는 주차장 객체만 남긴다
+    """
+    filtered_spot = [spot for spot in spots if ptype in spot.get('ptype')]
+    return filtered_spot
+
+def filter_by_location(spots, locations):
+    """
+    위치로 필터링
+    위치 정보를 담은 튜플을 매개변수로 받는다
+    위도와 경도 모두 최소값 초과 최대값 미만인 주차장 객체만 남긴다
+    """
+    filtered_spot = [spot for spot in spots if \
+                     locations[2] < float(spot.get('longitude')) < locations[3] \
+                    and locations[0] < float(spot.get('latitude')) < locations[1]]
+    return filtered_spot
 
 
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)

@@ -2,7 +2,7 @@
 이 모듈은 프로그램 텍스트 UI와 관련된 모듈이다
 기능
 1 : 지금까지의 모든 조건을 만족하는 주차장 리스트를 출력
-2 : 아직 미구현
+2 : 조건에 맞게 주차장 리스트를 필터링
 3 : 아직 미구현
 4 : 프로그램 종료
 """
@@ -27,6 +27,15 @@ def start_process(path):
             """
             psm.print_spots(spots)
         elif select == 2:
+            """
+            필터링
+            사용 가능한 조건
+            1 : 이름
+            2 : 도시
+            3 : 시군구
+            4 : 주차 유형
+            5 : 위치 // 최소 위도, 최대 위도, 최소 경도, 최대 경도 순으로 입력
+            """
             print("---filter by---")
             print("[1] name")
             print("[2] city")
@@ -36,27 +45,23 @@ def start_process(path):
             select = int(input('type:'))
             if select == 1:
                 keyword = input('type name:')
-                print("not implemented yet")
-                # fill this block
+                spots = psm.filter_by_name(spots, keyword)
             elif select == 2:
                 keyword = input('type city:')
-                print("not implemented yet")
-                # fill this block
+                spots = psm.filter_by_city(spots, keyword)
             elif select == 3:
                 keyword = input('type district:')
-                print("not implemented yet")
-                # fill this block
+                spots = psm.filter_by_district(spots, keyword)
             elif select == 4:
                 keyword = input('type ptype:')
-                print("not implemented yet")
-                # fill this block
+                spots = psm.filter_by_ptype(spots, keyword)
             elif select == 5:
                 min_lat = float(input('type min lat:'))
                 max_lat = float(input('type max lat:'))
                 min_lon = float(input('type min long:'))
                 max_lon = float(input('type max long:'))
-                print("not implemented yet")
-                # fill this block
+                locations = (min_lat, max_lat, min_lon, max_lon)
+                spots = psm.filter_by_location(spots, locations)
             else:
                 print("invalid input")
         elif select == 3:
