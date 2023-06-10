@@ -107,6 +107,14 @@ def filter_by_location(spots, locations):
                     and locations[0] < float(spot.get('latitude')) < locations[1]]
     return filtered_spot
 
+def sort_by_keyword(spots, keyword):
+    """
+    주차 리스트 정렬
+    매개변수로 받은 익명 함수로 기준이 되는 값을 설정
+    설정 한 기준으로 주차 리스트를 정렬 후 반환
+    """
+    sorted_spot = sorted(spots, key = lambda x : x.get(keyword))
+    return sorted_spot
 
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
 if __name__ == '__main__':

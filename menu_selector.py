@@ -3,8 +3,8 @@
 기능
 1 : 지금까지의 모든 조건을 만족하는 주차장 리스트를 출력
 2 : 조건에 맞게 주차장 리스트를 필터링
-3 : 아직 미구현
-4 : 프로그램 종료
+3 : 특정 값을 기준으로 주차장 리스트를 정렬
+4 : 종료
 """
 import file_manager as fm
 import parking_spot_manager as psm
@@ -65,13 +65,17 @@ def start_process(path):
             else:
                 print("invalid input")
         elif select == 3:
+            """
+            정렬
+            이름, 도시, 시군구, 주차 유형, 위도, 경도 6가지 기준으로 정렬 가능
+            이외의 기준을 입력시 오류 메세지 출력
+            """
             keywords = ['name', 'city', 'district', 'ptype', 'latitude', 'longitude']
             print("---sort by---")
             print(keywords)
             keyword = input('type keyword:')
             if keyword in keywords:
-                print("not implemented yet")
-                # fill this block
+                spots = psm.sort_by_keyword(spots, keyword)
             else: print("invalid input")
         elif select == 4:
             print("Exit")
